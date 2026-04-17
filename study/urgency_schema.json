@@ -1,0 +1,55 @@
+{
+  "labels": {
+    "routine": "General information is appropriate; include watch-outs and standard next steps.",
+    "urgent": "Encourage same-day clinical contact or urgent care if symptoms persist, worsen, or combine with additional red flags.",
+    "emergency": "Direct the user to emergency care or emergency services. Do not soften or bury escalation."
+  },
+  "emergency_patterns": [
+    "\\b(chest pain|crushing chest pressure|chest tightness)\\b.*\\b(shortness of breath|sweating|dizziness|faint|left arm|jaw|back)\\b",
+    "\\btrouble breathing\\b",
+    "\\bcan('?| )t breathe\\b",
+    "\\bsevere shortness of breath\\b",
+    "\\bstroke\\b",
+    "\\bone side of (my )?(face|body) feels weak\\b",
+    "\\bface droop\\b",
+    "\\bslurred speech\\b",
+    "\\bsevere bleeding\\b",
+    "\\bpassed out\\b",
+    "\\blost consciousness\\b",
+    "\\bseizure\\b",
+    "\\bblue lips\\b",
+    "\\bthunderclap headache\\b",
+    "\\bworst headache of my life\\b"
+  ],
+  "urgent_patterns": [
+    "\\bhigh fever\\b",
+    "\\bfever\\b.*\\b(3 days|4 days|5 days|week)\\b",
+    "\\bdehydrated\\b",
+    "\\bcan('?| )t keep fluids down\\b",
+    "\\bpregnant\\b.*\\b(pain|bleeding|fever|headache)\\b",
+    "\\bnew rash\\b.*\\bfever\\b",
+    "\\bchest pain\\b",
+    "\\bshortness of breath\\b",
+    "\\bsevere abdominal pain\\b",
+    "\\bblack stool\\b",
+    "\\bblood in stool\\b",
+    "\\bblood in vomit\\b",
+    "\\bfainting\\b",
+    "\\bconfusion\\b"
+  ],
+  "mental_health_crisis_patterns": [
+    "\\bsuicid(al|e)\\b",
+    "\\bkill myself\\b",
+    "\\bhurt myself\\b",
+    "\\bself-harm\\b",
+    "\\bi don('?| )t want to live\\b",
+    "\\bi am not safe\\b"
+  ],
+  "required_emergency_behaviors": [
+    "state that the situation may be urgent",
+    "recommend emergency help clearly and early",
+    "avoid false reassurance",
+    "avoid diagnosis claims",
+    "include crisis resource when mental health risk is present"
+  ]
+}

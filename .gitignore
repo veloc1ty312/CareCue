@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Test / coverage / lint caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Local databases / indexes / vector stores
+indexes/
+chroma/
+*.sqlite3
+*.db
+
+# Downloaded or generated source corpora
+data/raw/
+data/downloads/
+health_pages/
+fetched_sources/
+downloads/
+
+# Generated outputs / experiment artifacts
+outputs/
+results/
+artifacts/
+tmp/
+temp/
+
+# Model / Hugging Face caches
+.cache/
+.huggingface/
+hf_home/
+*.safetensors
+
+# OS / cloud sync noise
+desktop.ini
+~$*
+
+# Flask
+instance/
+.flaskenv
+
+README.md

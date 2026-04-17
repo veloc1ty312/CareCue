@@ -1,0 +1,19 @@
+{
+  "name": "STAI-6 template scaffold",
+  "note": "Insert licensed or institution-approved STAI-6 wording before use.",
+  "response_scale": [1, 2, 3, 4],
+  "anchors": {
+    "1": "Not at all",
+    "2": "Somewhat",
+    "3": "Moderately",
+    "4": "Very much"
+  },
+  "items": [
+    {"id": "stai6_1", "reverse_scored": false},
+    {"id": "stai6_2", "reverse_scored": true},
+    {"id": "stai6_3", "reverse_scored": false},
+    {"id": "stai6_4", "reverse_scored": true},
+    {"id": "stai6_5", "reverse_scored": false},
+    {"id": "stai6_6", "reverse_scored": true}
+  ]
+}

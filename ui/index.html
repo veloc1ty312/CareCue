@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CareCue Prototype</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f5f7fb; color: #1f2937; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+    .card { background: white; border-radius: 14px; padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,.06); }
+    textarea { width: 100%; min-height: 130px; padding: 12px; border-radius: 10px; border: 1px solid #d1d5db; font: inherit; }
+    button, select { padding: 10px 14px; border-radius: 10px; border: 1px solid #cbd5e1; background: white; font: inherit; }
+    button.primary { background: #2563eb; color: white; border: none; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    pre { white-space: pre-wrap; line-height: 1.5; }
+    .pill { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #e5e7eb; margin-right: 8px; }
+    .cit { font-size: 14px; padding: 10px 0; border-bottom: 1px solid #e5e7eb; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>CareCue Prototype</h1>
+      <p>Grounded first-pass health information with explicit safety escalation.</p>
+      <textarea id="q" placeholder="Example: I have chest tightness and feel sweaty. Should I be worried?"></textarea>
+      <div class="row" style="margin: 12px 0 18px;">
+        <label>Mode
+          <select id="mode">
+            <option value="carecue">CareCue (calm but credible)</option>
+            <option value="grounded_neutral">Grounded neutral baseline</option>
+          </select>
+        </label>
+        <button class="primary" onclick="runChat()">Ask</button>
+      </div>
+      <div id="meta"></div>
+      <h3>Answer</h3>
+      <pre id="answer"></pre>
+      <h3>Citations</h3>
+      <div id="citations"></div>
+    </div>
+  </div>
+  <script>
+    async function runChat() {
+      const q = document.getElementById('q').value.trim();
+      const mode = document.getElementById('mode').value;
+      if (!q) return;
+      document.getElementById('answer').textContent = 'Loading...';
+      document.getElementById('citations').innerHTML = '';
+      document.getElementById('meta').innerHTML = '';
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({q, mode})
+      });
+      const js = await res.json();
+      if (!res.ok) {
+        document.getElementById('answer').textContent = js.error || 'Request failed';
+        return;
+      }
+      document.getElementById('answer').textContent = js.answer;
+      document.getElementById('meta').innerHTML =
+        `<span class="pill">Mode: ${js.mode}</span><span class="pill">Urgency: ${js.urgency.label}</span>`;
+      const container = document.getElementById('citations');
+      js.citations.forEach(c => {
+        const div = document.createElement('div');
+        div.className = 'cit';
+        div.innerHTML = `<strong>[${c.idx}] ${c.source || 'unknown'}</strong><br>${c.publisher || ''}<br><a href="${c.url}" target="_blank">${c.url || ''}</a>`;
+        container.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
