@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from flask import Flask, jsonify, request
 
 from models import generate_answer
-from policies import classify_urgency
+from policies import audit_text_safety, classify_urgency
 from retriever import Retriever
 
 load_dotenv()
@@ -41,6 +41,7 @@ def chat():
     urgency = classify_urgency(q)
     docs = retr.search(q, k=k)
     answer = generate_answer(q, docs, mode=mode, urgency_label=urgency["label"])
+    quality = audit_text_safety(answer, urgency_label=urgency["label"], mode=mode)
     citations = [
         {
             "idx": i + 1,
@@ -57,6 +58,7 @@ def chat():
             "answer": answer,
             "mode": mode,
             "urgency": urgency,
+            "quality": quality,
             "citations": citations,
         }
     )

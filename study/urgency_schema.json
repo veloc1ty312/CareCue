@@ -4,12 +4,31 @@
     "urgent": "Encourage same-day clinical contact or urgent care if symptoms persist, worsen, or combine with additional red flags.",
     "emergency": "Direct the user to emergency care or emergency services. Do not soften or bury escalation."
   },
+  "emergency_combinations": [
+    {
+      "reason": "chest_symptoms_with_red_flags",
+      "all": [
+        "\\b(chest pain|chest tightness|chest pressure|chest discomfort|pressure in my chest)\\b",
+        "\\b(shortness of breath|trouble breathing|sweating|cold sweat|dizziness|faint|fainting|nausea|weakness|left arm|jaw|neck|back)\\b"
+      ]
+    },
+    {
+      "reason": "stroke_like_symptoms",
+      "all": [
+        "\\b(sudden|suddenly|new|now)\\b",
+        "\\b(slurred speech|face droop|drooping face|one[- ]sided weakness|one side.*weak|arm.*weak|leg.*weak|confusion|one side of.*face.*weak)\\b"
+      ]
+    }
+  ],
   "emergency_patterns": [
     "\\b(chest pain|crushing chest pressure|chest tightness)\\b.*\\b(shortness of breath|sweating|dizziness|faint|left arm|jaw|back)\\b",
+    "\\bcrushing chest pressure\\b",
+    "\\bsevere chest pain\\b",
     "\\btrouble breathing\\b",
     "\\bcan('?| )t breathe\\b",
     "\\bsevere shortness of breath\\b",
     "\\bstroke\\b",
+    "\\bone side of (my |her |his |their )?(face|body) (looks |feels )?weak\\b",
     "\\bone side of (my )?(face|body) feels weak\\b",
     "\\bface droop\\b",
     "\\bslurred speech\\b",
@@ -20,6 +39,22 @@
     "\\bblue lips\\b",
     "\\bthunderclap headache\\b",
     "\\bworst headache of my life\\b"
+  ],
+  "urgent_combinations": [
+    {
+      "reason": "worsening_abdominal_pain",
+      "all": [
+        "\\b(abdominal pain|stomach pain|belly pain)\\b",
+        "\\b(worsening|getting worse|vomit|throwing up|nauseated|nausea|harder to ignore)\\b"
+      ]
+    },
+    {
+      "reason": "dizziness_near_fainting",
+      "all": [
+        "\\b(dizzy|dizziness|lightheaded)\\b",
+        "\\b(nearly fainted|almost fainted|weak|standing up|worsening)\\b"
+      ]
+    }
   ],
   "urgent_patterns": [
     "\\bhigh fever\\b",
@@ -43,7 +78,9 @@
     "\\bhurt myself\\b",
     "\\bself-harm\\b",
     "\\bi don('?| )t want to live\\b",
-    "\\bi am not safe\\b"
+    "\\bi am not safe\\b",
+    "\\bi do not feel safe\\b",
+    "\\bnot safe being alone\\b"
   ],
   "required_emergency_behaviors": [
     "state that the situation may be urgent",
